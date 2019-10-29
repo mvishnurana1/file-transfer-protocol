@@ -1,0 +1,24 @@
+simpleFTP: myftp myftpd
+
+myftp: myftp.o token.o
+	gcc myftp.o token.o -o myftp
+
+myftpd: myftpd.o daemon.o
+	gcc myftpd.o daemon.o -o myftpd
+
+myftp.o: myftp.c mydefs.h
+	gcc -c myftp.c
+
+myftpd.o: myftpd.c mydefs.h
+	gcc -c myftpd.c
+
+token.o: token.h token.c
+	gcc -c token.c
+
+daemon.o: daemon.h daemon.c
+	gcc -c daemon.c
+
+clean:
+	rm *.o
+	rm myftp
+	rm myftpd
